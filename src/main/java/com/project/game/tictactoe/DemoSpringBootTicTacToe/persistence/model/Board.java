@@ -1,5 +1,7 @@
 package com.project.game.tictactoe.DemoSpringBootTicTacToe.persistence.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Component;
 public class Board {
     int size;
     char[][] board;
+    private static final Logger LOG = LoggerFactory.getLogger(Board.class);
 
     public Board(@Value("${board.size}") int size) {
         this.size = size;
@@ -16,11 +19,15 @@ public class Board {
 
     public void drawBoard() {
         System.out.println("-------------");
+        //LOG.info("---------------");
         for (int i = 0; i < this.size; ++i) {
+            //LOG.info("| ");
             System.out.print("| ");
             for (int j = 0; j < this.size; ++j) {
+                //LOG.info(" | ");
                 System.out.print(this.board[i][j] + " | ");
             }
+            //LOG.info("---------------");
             System.out.println("\n-------------");
         }
     }
